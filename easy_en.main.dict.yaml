@@ -1,0 +1,10 @@
+---
+name: easy_en.main
+version: "2026-02-09"
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - easy_en
+  - user_dicts/01_custom
+  - user_dicts/02_en_names
+...

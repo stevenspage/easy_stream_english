@@ -1,0 +1,19 @@
+# encoding: utf-8
+---
+recipe:
+  Rx: customize
+  args:
+    - schema=luna_pinyin
+  description: >-
+    Customize input schema to show english suggestion
+
+install_files: >-
+  easy_en.schema.yaml
+  easy_en.dict.yaml
+  easy_en.yaml
+  lua/easy_en.lua
+
+patch_files:
+  ${schema:-luna_pinyin}.custom.yaml:
+    - patch/+:
+        __include: easy_en:/$(if [[ $schema =~ ^(double_pinyin_mspy|terra_pinyin|special_schema)$ ]]; then echo "patch_${schema}"; else echo "patch"; fi)

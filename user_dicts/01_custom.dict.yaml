@@ -1,0 +1,21 @@
+---
+name: 01_custom
+version: "2026-02-09"
+sort: by_weight
+...
+
+ChatGPT	chatgpt
+OpenAI	openai
+Claude claude
+GitHub	github
+Python	python
+Anthropic	anthropic
+Squirrel	squirrel
+Rime	rime
+IME	ime
+PowerShell	powershell
+Notion	notion
+I'm	i'm
+I've	i've
+don't	don't
+Don't	don't
