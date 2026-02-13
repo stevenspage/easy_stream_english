@@ -47,12 +47,13 @@
 1. **编辑个人词库**：用文本编辑器打开 `user_dicts/01_custom.dict.yaml`，在 `...` 下方按格式添加词汇。
 
 2. **词条格式**：每行一条，格式为 `候选词` + **Tab键** + `输入码`：
-   - **候选词**：选词后输出的内容，即你希望打出的词（如 `ChatGPT`、`GitHub`）
-   - **输入码**：你输入的字母串，用于匹配候选词，（如输入 `chatgpt` 可打出 `ChatGPT`，如果无大小写区别，则候选词和输入码一样）
+
 
 ```
 候选词	输入码
 ```
+   - **候选词**：选词后输出的内容，即你希望打出的词（如 `ChatGPT`、`GitHub`）
+   - **输入码**：你输入的字母串，用于匹配候选词，（如输入 `chatgpt` 可打出 `ChatGPT`，如果无大小写区别，则候选词和输入码一样）
 
 3. **格式示例**：
 
@@ -64,9 +65,8 @@ sort: by_weight
 ...
 
 ChatGPT	chatgpt
-OpenAI	openai
-Claude	claude
-GitHub	github
+hello hello
+I'm   i'm
 ```
 
 4. **添加新词库**：在 `user_dicts/` 下新建 `xxx.dict.yaml`，按上述格式编写，并在 `easy_en.main.dict.yaml` 的 `import_tables` 中追加 `- user_dicts/xxx`。
