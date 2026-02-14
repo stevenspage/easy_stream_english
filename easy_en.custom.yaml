@@ -1,2 +1,6 @@
+ # 在 selector 之前插入处理器：
+ # 拦截 Enter 键，选中候选后直接上屏，不追加空格
+
 patch:
   translator/dictionary: easy_en.main
+  "engine/processors/@before 5": lua_processor@*easy_en*enter_no_space

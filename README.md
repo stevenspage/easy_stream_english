@@ -8,9 +8,9 @@
 
 - **多系统支持**：支持Windows和MacOS
 - **自动补全**：输入时智能联想补全单词
-- **自动空格**：选词后自动插入空格
+- **自动空格**：选词后自动插入空格（按Enter键选词则取消空格）
 - **海量词库**：25 万常用词 + 2.7 万英文名
-- **纸牌屋优化**：Frank、Claire、Underwood 等剧中人物名优先联想
+- **纸牌屋优化**：Zoey Barnes,Peter Russo,Linda Vasquez 等剧中人物名优先联想
 - **自定义词库**：支持在 `user_dicts/` 目录下添加个人词库
 - **美化皮肤**：基于 [雾凇拼音](https://github.com/iDvel/rime-ice) 的 `purity_of_form_custom` 配色
 

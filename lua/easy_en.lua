@@ -1,3 +1,5 @@
+-- 优化原配置，按enter键上屏不输出空格
+
 local is_split_sentence
 local wordninja_split
 
@@ -76,6 +78,47 @@ local function is_in_dict(mem, text)
    return mem:user_lookup(text, false) or mem:dict_lookup(text, false, 1)
 end
 
+
+-- Enter 选词：上屏但不加空格（仅影响 Enter；空格仍走原逻辑）
+local function enter_no_space_processor(key, env)
+  local ctx = env.engine.context
+
+  -- Return / Enter
+  if key:repr() ~= "Return" and key.keycode ~= 13 then
+    return 2
+  end
+
+  -- 只有在候选菜单存在时才接管：实现“Enter 选词”
+  if not ctx:has_menu() then
+    return 2
+  end
+
+  local comp = ctx.composition
+  local seg = comp:back()
+  if not seg or not seg.menu then
+    return 2
+  end
+
+  local idx = seg.selected_index or 0
+  local cand = seg:get_candidate_at(idx)
+  if not cand then
+    return 2
+  end
+
+  local text = cand.text or ""
+  -- 去掉 easy_en 追加的尾部空格
+  if text:sub(-1) == " " then
+    text = text:sub(1, -2)
+  end
+
+  ctx:clear()
+  env.engine:commit_text(text)
+  return 1 -- 消费掉 Enter，阻止默认行为
+end
+
+
+
+
 local function enhance_filter(input, env)
    for cand in input:iter() do
       if (cand.comment:find("☯")) then
@@ -106,4 +149,7 @@ local function enhance_filter(input, env)
    end
 end
 
-return { enhance_filter = { init = init, fini = fini, func = enhance_filter} }
+return {
+  enhance_filter = { init = init, fini = fini, func = enhance_filter },
+  enter_no_space = { func = enter_no_space_processor },
+}
